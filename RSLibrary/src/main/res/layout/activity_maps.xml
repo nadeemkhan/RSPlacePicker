@@ -45,6 +45,7 @@
                     android:textSize="16sp"
                     tools:text="@string/search_location" />
                 <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_current"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:padding="16dp"

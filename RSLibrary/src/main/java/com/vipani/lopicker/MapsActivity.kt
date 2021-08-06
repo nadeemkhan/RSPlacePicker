@@ -2,8 +2,11 @@ package com.vipani.lopicker
 
 import android.Manifest
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.content.IntentSender
 import android.content.pm.PackageManager
+import android.location.LocationManager
 import android.location.Address
 import android.location.Geocoder
 import android.os.Bundle
@@ -12,14 +15,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import com.google.android.gms.common.api.ResolvableApiException
+import com.google.android.gms.location.*
 import com.vipani.lopicker.databinding.ActivityMapsBinding
 import com.vipani.lopicker.utils.*
-import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.tasks.Task
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.widget.Autocomplete
@@ -56,6 +61,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamera
         Places.initialize(applicationContext, RSPlacePicker.androidApiKey)
         mBinding.txtSearch.setOnClickListener {
             openAutoCompletePlace()
+        }
+
+        mBinding.imgCurrent.setOnClickListener {
+            checkGPSEnabled()
         }
 
         mBinding.btnSend.setOnClickListener {
@@ -173,6 +182,36 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamera
                     // The user canceled the operation.
                 }
             }
+        }
+    }
+
+    private fun turnOnGPS() {
+        val request = LocationRequest.create().apply {
+            interval = 1000
+            priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+        }
+        val builder = LocationSettingsRequest.Builder().addLocationRequest(request)
+        val client: SettingsClient = LocationServices.getSettingsClient(this)
+        val task: Task<LocationSettingsResponse> = client.checkLocationSettings(builder.build())
+        task.addOnFailureListener {
+            if (it is ResolvableApiException) {
+                try {
+                    it.startResolutionForResult(this, 12345)
+                } catch (sendEx: IntentSender.SendIntentException) {
+                }
+            }
+        }.addOnSuccessListener {
+            enableCurrentLocation()
+        }
+    }
+
+    private fun checkGPSEnabled() {
+        val manager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        if (manager.isProviderEnabled(LocationManager.GPS_PROVIDER).not()) {
+            turnOnGPS()
+        }
+        else{
+            enableCurrentLocation()
         }
     }
 
