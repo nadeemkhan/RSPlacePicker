@@ -42,7 +42,7 @@
              android:id="@+id/txt_address"
              android:layout_width="0dp"
              android:layout_height="wrap_content"
-             tools:text="Near Rajpath Culb Baleswar Aveniew"
+             tools:text="Near Kochi"
              app:layout_constraintStart_toStartOf="@id/txt_name"
              app:layout_constraintEnd_toEndOf="@id/txt_name"
              app:layout_constraintTop_toBottomOf="@id/txt_name"

@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">RS Picker</string>
+    <string name="app_name">Vipani Location</string>
     <string name="title_activity_maps">Map</string>
     <string name="permission_location">Location permission is require to determine your current location.</string>
     <string name="search_location">Search location</string>
     <string name="use_this_place">Use this place?</string>
-    <string name="ok">OK</string>
+    <string name="ok">Confirm</string>
     <string name="change_location">Change Location</string>
 </resources>

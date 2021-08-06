@@ -5,8 +5,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.app.rspicker.LocationModel
-import com.app.rspicker.RSPlacePicker
+import com.vipani.lopicker.LocationModel
+import com.vipani.lopicker.RSPlacePicker
 import kotlinx.android.synthetic.main.activity_main.*
 
 

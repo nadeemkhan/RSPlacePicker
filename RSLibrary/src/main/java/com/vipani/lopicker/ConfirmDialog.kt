@@ -1,4 +1,4 @@
-package com.app.rspicker
+package com.vipani.lopicker
 
 import android.graphics.Bitmap
 import android.location.Address
@@ -9,8 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
-import com.app.rspicker.databinding.DialogConfirmBinding
-import com.app.rspicker.utils.*
+import com.vipani.lopicker.databinding.DialogConfirmBinding
+import com.vipani.lopicker.utils.*
 import java.io.IOException
 
 class ConfirmDialog : DialogFragment() {

@@ -1,4 +1,4 @@
-package com.app.rspicker
+package com.vipani.lopicker
 
 import android.Manifest
 import android.app.Activity
@@ -12,8 +12,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
-import com.app.rspicker.databinding.ActivityMapsBinding
-import com.app.rspicker.utils.*
+import com.vipani.lopicker.databinding.ActivityMapsBinding
+import com.vipani.lopicker.utils.*
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap

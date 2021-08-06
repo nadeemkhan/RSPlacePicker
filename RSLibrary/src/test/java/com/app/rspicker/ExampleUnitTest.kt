@@ -1,4 +1,4 @@
-package com.app.rspicker
+package com.vipani.lopicker
 
 import org.junit.Test
 

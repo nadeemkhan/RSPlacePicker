@@ -1,4 +1,4 @@
-package com.app.rspicker.utils
+package com.vipani.lopicker.utils
 
 import android.content.Context
 import android.content.ContextWrapper

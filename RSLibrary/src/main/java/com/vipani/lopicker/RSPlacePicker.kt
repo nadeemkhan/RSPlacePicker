@@ -1,8 +1,8 @@
-package com.app.rspicker
+package com.vipani.lopicker
 
 import android.app.Activity
 import android.content.Intent
-import com.app.rspicker.utils.KEY_LOCATION
+import com.vipani.lopicker.utils.KEY_LOCATION
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException

@@ -1,4 +1,4 @@
-package com.app.rspicker
+package com.vipani.lopicker
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

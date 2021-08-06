@@ -1,4 +1,4 @@
-package com.app.rspicker.utils
+package com.vipani.lopicker.utils
 
 const val DEFAULT_ZOOM: Float = 15f
 const val RC_LOCATION_PERMISSION = 100
