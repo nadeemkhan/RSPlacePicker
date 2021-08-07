@@ -58,7 +58,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnCamera
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
-        Places.initialize(applicationContext, RSPlacePicker.androidApiKey)
+        Places.initialize(getApplicationContext(), RSPlacePicker.androidApiKey)
         mBinding.txtSearch.setOnClickListener {
             openAutoCompletePlace()
         }
