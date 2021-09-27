@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import android.location.Address
 import android.location.Geocoder
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,7 +21,7 @@ class ConfirmDialog : DialogFragment() {
     private var longitude: Double = 0.0
     private var bitmap: Bitmap? = null
     private lateinit var locationConfirmListener: LocationConfirmListener
-
+//    private lateinit var geocoder: Geocoder
     companion object {
         fun newInstance(latitude: Double, longitude: Double, bitmap: Bitmap): ConfirmDialog {
             val args = Bundle()
@@ -55,8 +56,16 @@ class ConfirmDialog : DialogFragment() {
         )
 
         val address = getAddress()
-        mBinding.txtName.text = "${address?.featureName}"
-        mBinding.txtAddress.text = "${address?.getAddressLine(0)}"
+
+        if (address == null) {
+            mBinding.txtName.text = ""
+            mBinding.txtAddress.text = ""
+        }
+        else{
+            mBinding.txtName.text = "${address?.featureName}"
+            mBinding.txtAddress.text = "${address?.getAddressLine(0)}"
+        }
+
 
         val staticMapUrl = STATIC_MAP_URL
             .format(
@@ -73,8 +82,14 @@ class ConfirmDialog : DialogFragment() {
         }
 
         mBinding.btnOk.setOnClickListener {
-            address?.getAddressLine(0)
-                ?.let { value -> locationConfirmListener.locationConfirm(value, latitude, longitude, staticMapUrl) }
+            if (address == null) {
+                locationConfirmListener.locationConfirm("", latitude, longitude, staticMapUrl)
+                }
+            else{
+                address?.getAddressLine(0)
+                    ?.let { value -> locationConfirmListener.locationConfirm(value, latitude, longitude, staticMapUrl) }
+
+            }
             dismiss()
         }
 
@@ -86,6 +101,11 @@ class ConfirmDialog : DialogFragment() {
         var addresses: List<Address> = emptyList()
 
         try {
+//            geocoder = GeocoderBuilder()
+//                .addGeocodingApi(GoogleMaps.create())
+//                .setDownloaderFactory(
+//                    OkHttpFactory(OkHttpClient.Builder().build()))
+//                .build()
             addresses = Geocoder(requireContext()).getFromLocation(
                 latitude,
                 longitude,
